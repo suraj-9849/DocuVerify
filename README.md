@@ -137,7 +137,6 @@ frontend/
 ## 6. What's deliberately out of scope
 
 Per the challenge brief: signup flow, password reset, email sending, OAuth,
-file upload, rich text editing, a complex admin dashboard, real deployment,
-pixel-perfect styling, mobile-perfect layout.
+file upload, a complex admin dashboard.
 
 See `DESIGN.md` for the design rationale, invariants, and tradeoffs.
