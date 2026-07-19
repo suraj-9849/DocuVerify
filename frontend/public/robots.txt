@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://docuverify.app/sitemap.xml
