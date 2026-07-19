@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  VIEWER
+  AUTHOR
+  REVIEWER
+  ADMIN
+}
+
+enum DocumentStatus {
+  DRAFT
+  SUBMITTED
+  APPROVED
+  REJECTED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum AuditAction {
+  CREATED
+  EDITED
+  SUBMITTED
+  APPROVED
+  REJECTED
+  REOPENED
+  PUBLISHED
+  ARCHIVED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String
+  role      Role
+  createdAt DateTime @default(now())
+
+  documents    Document[]   @relation("AuthoredDocuments")
+  auditEvents  AuditEvent[] @relation("ActorEvents")
+
+  @@map("users")
+}
+
+model Document {
+  id        String         @id @default(uuid())
+  title     String
+  body      String
+  status    DocumentStatus @default(DRAFT)
+  version   Int            @default(1)
+
+  authorId  String
+  author    User   @relation("AuthoredDocuments", fields: [authorId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  auditEvents AuditEvent[]
+
+  @@index([status])
+  @@index([authorId])
+  @@map("documents")
+}
+
+model AuditEvent {
+  id         String        @id @default(uuid())
+  documentId String
+  document   Document      @relation(fields: [documentId], references: [id], onDelete: Cascade)
+
+  actorId    String
+  actor      User          @relation("ActorEvents", fields: [actorId], references: [id])
+
+  action     AuditAction
+  comment    String?
+
+  prevStatus DocumentStatus?
+  newStatus  DocumentStatus?
+
+  createdAt  DateTime @default(now())
+
+  @@index([documentId])
+  @@map("audit_events")
+}

@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #000000;
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --accent: #f5f5f5;
+  --accent-foreground: #000000;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #000000;
+  --input: #000000;
+  --ring: #000000;
+  --radius: 0px;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --correct: #16a34a;
+  --wrong: #dc2626;
+  --highlight: #f5f5f5;
+  --card-shadow: 4px 4px 0px #000;
+  --sidebar-background: #ffffff;
+  --sidebar-foreground: #000000;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #000000;
+}
+
+html.dark {
+  color-scheme: dark;
+  --background: #121212;
+  --foreground: #ffffff;
+  --card: #121212;
+  --card-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #121212;
+  --secondary: #1e1e1e;
+  --secondary-foreground: #ffffff;
+  --muted: #1e1e1e;
+  --muted-foreground: #a0a0a0;
+  --accent: #1e1e1e;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #555555;
+  --input: #555555;
+  --ring: #a0a0a0;
+  --radius: 0px;
+  --popover: #121212;
+  --popover-foreground: #ffffff;
+  --correct: #22c55e;
+  --wrong: #ef4444;
+  --highlight: #1e1e1e;
+  --card-shadow: 4px 4px 0px #444;
+  --sidebar-background: #121212;
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent: #1e1e1e;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #555555;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+*, *::before, *::after {
+  border-color: var(--border);
+}
+
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-content {
+  animation: page-enter 0.3s ease-out;
+}
+
+.dv-badge {
+  display: inline-block;
+  border: 2px solid var(--border);
+  padding: 4px 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.dv-card {
+  border: 2px solid var(--border);
+  background: var(--card);
+  padding: 24px;
+}
+
+.dv-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--card-shadow);
+}
+
+.dv-btn {
+  border: 2px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  padding: 12px 24px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.dv-btn:hover {
+  background: var(--foreground);
+  color: var(--background);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--card-shadow);
+}
+
+.dv-btn-primary {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.dv-btn-primary:hover {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.dv-btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.dv-input {
+  width: 100%;
+  border: 2px solid var(--border);
+  background: var(--background);
+  color: var(--foreground);
+  padding: 10px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.dv-input:focus {
+  border-color: var(--correct);
+}
+
+.dv-divider {
+  border: none;
+  border-top: 2px solid var(--border);
+  margin: 2rem 0;
+}
+
+.dv-mono {
+  font-family: 'DM Mono', monospace;
+}
+
+.dv-hover-lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--card-shadow);
+}
